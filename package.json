@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-webfontloader",
-  "version": "0.3.2",
+  "version": "1.0.0",
   "description": "WebFontLoader wrapper for Ember CLI.",
   "keywords": [
     "ember-addon",
@@ -13,6 +13,12 @@
   ],
   "license": "MIT",
   "author": "Igor Kuzmenko",
+  "contributors": [
+    {
+      "name": "Bryan Crotaz",
+      "url": "https://github.com/BryanCrotaz"
+    }
+  ],
   "directories": {
     "doc": "doc",
     "test": "tests"
