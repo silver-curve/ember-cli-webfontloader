@@ -1,10 +1,11 @@
 import Ember from 'ember';
-import WebFont from 'webfontloader';
+import WebFontLoader from 'webfontloader';
 
 export default Ember.Service.extend({
 
   init() {
     this._super();
+    this.webFontLoader = WebFontLoader.load ? WebFontLoader : WebFontLoader.WebFont;
     // Extending WebFont
     let events = {
       // current state of WebFontLoader
@@ -73,17 +74,17 @@ export default Ember.Service.extend({
       }
     };
 
-    WebFont.__events__ = events;
+    this.webFontLoader.__events__ = events;
 
     // Adds a callback to the eventHandlers[event] list and
     // if "toRun" is true and the current state is event name,
     // we need to run callback function after we add it to the list
-    WebFont.on = (event, callback, toRun) => {
+    this.webFontLoader.on = (event, callback, toRun) => {
         // Adding new handler to the list
-        WebFont.__events__.eventHandlers[event].push(callback);
+        this.webFontLoader.__events__.eventHandlers[event].push(callback);
 
         // Checking if we should run it now
-        if (toRun && event === WebFont.__events__.state) {
+        if (toRun && event === WebFontLoader.__events__.state) {
             callback();
         }
     };
@@ -97,10 +98,10 @@ export default Ember.Service.extend({
     config.fontactive   = events.onFontactive;
     config.fontinactive = events.onFontinactive;
 
-    WebFont.load(config);
+    this.webFontLoader.load(config);
   },
 
   load(...args) {
-    WebFont.load(...args);
+    this.webFontLoader.load(...args);
   }
 });
